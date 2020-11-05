@@ -38,42 +38,42 @@
                           <v-img
                             v-if="item.bu_type === 'hospital'"
                             alt="Avatar"
-                            src="../assets/icon/hospital.png"
+                            src="../../assets/icon/hospital.png"
                           >
                           </v-img>
 
                           <v-img
                             v-if="item.bu_type === 'cafe'"
                             alt="Avatar"
-                            src="../assets/icon/cafe.png"
+                            src="../../assets/icon/cafe.png"
                           >
                           </v-img>
 
                           <v-img
                             v-if="item.bu_type === 'farm'"
                             alt="Avatar"
-                            src="../assets/icon/farm.png"
+                            src="../../assets/icon/farm.png"
                           >
                           </v-img>
 
                           <v-img
                             v-if="item.bu_type === 'hotel'"
                             alt="Avatar"
-                            src="../assets/icon/hotel.png"
+                            src="../../assets/icon/hotel.png"
                           >
                           </v-img>
 
                           <v-img
                             v-if="item.bu_type === 'salon'"
                             alt="Avatar"
-                            src="../assets/icon/salon.png"
+                            src="../../assets/icon/salon.png"
                           >
                           </v-img>
 
                           <v-img
                             v-if="item.bu_type === 'shop'"
                             alt="Avatar"
-                            src="../assets/icon/shop.png"
+                            src="../../assets/icon/shop.png"
                           >
                           </v-img>
                         </v-avatar>
@@ -162,7 +162,7 @@
                     <v-row>
                       <v-col cols="6">
                         <v-avatar size="36px" style="margin-left: 3px">
-                          <v-img alt="Avatar" src="../assets/icon/hospital.png">
+                          <v-img alt="Avatar" src="../../assets/icon/hospital.png">
                           </v-img>
                         </v-avatar>
                       </v-col>
@@ -250,7 +250,7 @@
                     <v-row>
                       <v-col cols="6">
                         <v-avatar size="36px" style="margin-left: 3px">
-                          <v-img alt="Avatar" src="../assets/icon/cafe.png">
+                          <v-img alt="Avatar" src="../../assets/icon/cafe.png">
                           </v-img>
                         </v-avatar>
                       </v-col>
@@ -339,7 +339,7 @@
                     <v-row>
                       <v-col cols="6">
                         <v-avatar size="36px" style="margin-left: 3px">
-                          <v-img alt="Avatar" src="../assets/icon/hotel.png">
+                          <v-img alt="Avatar" src="../../assets/icon/hotel.png">
                           </v-img>
                         </v-avatar>
                       </v-col>
@@ -427,7 +427,7 @@
                     <v-row>
                       <v-col cols="6">
                         <v-avatar size="36px" style="margin-left: 3px">
-                          <v-img alt="Avatar" src="../assets/icon/shop.png">
+                          <v-img alt="Avatar" src="../../assets/icon/shop.png">
                           </v-img>
                         </v-avatar>
                       </v-col>
@@ -515,7 +515,7 @@
                     <v-row>
                       <v-col cols="6">
                         <v-avatar size="36px" style="margin-left: 3px">
-                          <v-img alt="Avatar" src="../assets/icon/salon.png">
+                          <v-img alt="Avatar" src="../../assets/icon/salon.png">
                           </v-img>
                         </v-avatar>
                       </v-col>
@@ -603,7 +603,7 @@
                     <v-row>
                       <v-col cols="6">
                         <v-avatar size="36px" style="margin-left: 3px">
-                          <v-img alt="Avatar" src="../assets/icon/farm.png">
+                          <v-img alt="Avatar" src="../../assets/icon/farm.png">
                           </v-img>
                         </v-avatar>
                       </v-col>
@@ -633,31 +633,7 @@
                 next-icon="mdi-menu-right"
               ></v-pagination>
             </div>
-            <!-- <div align="end" justify="end">
-              <span class="mr-4 grey--text">
-                Page {{ page }} of {{ numberOfPages_farm }}
-              </span>
-              <v-btn
-                fab
-                dark
-                small
-                color="grey"
-                class="mr-1"
-                @click="formerPage"
-              >
-                <v-icon>mdi-chevron-left</v-icon>
-              </v-btn>
-              <v-btn
-                fab
-                dark
-                small
-                color="grey"
-                class="ml-1"
-                @click="nextPage_farm"
-              >
-                <v-icon>mdi-chevron-right</v-icon>
-              </v-btn>
-            </div> -->
+
           </template>
         </v-data-iterator>
       </template>
@@ -667,8 +643,8 @@
 
 <script>
 import axios from 'axios'
-import toolbar from '@/components/toolbar'
-import pagebar from '@/components/pagebar'
+import toolbar from '@/components/location/toolbar'
+import pagebar from '@/components/location/pagebar'
 
 export default {
   name: 'location',
@@ -815,5 +791,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/style/style.css";
+// @import "../assets/style/style.css";
+@import "../../assets/style/style.css";
 </style>

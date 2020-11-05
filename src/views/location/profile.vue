@@ -45,7 +45,7 @@
 
 <script>
 import axios from 'axios'
-import profilepagebar from '@/components/profilepagebar'
+import profilepagebar from '@/components/location/profilepagebar'
 export default {
   name: 'profile',
   components: {
@@ -122,5 +122,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import "../../assets/style/style.css";
 </style>

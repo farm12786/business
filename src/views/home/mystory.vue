@@ -18,7 +18,7 @@
           <span>PET</span>
           <a>
             <v-img
-              src="../assets/icon/cat.png"
+              src="../../assets/icon/cat.png"
               max-height="40"
               max-width="40"
             ></v-img>
@@ -29,7 +29,7 @@
           <span>Timeline</span>
           <a>
             <v-img
-              src="../assets/icon/timeline.png"
+              src="../../assets/icon/timeline.png"
               max-height="40"
               max-width="40"
             ></v-img>
@@ -39,7 +39,7 @@
           <span>Community</span>
           <a>
             <v-img
-              src="../assets/icon/blog.png"
+              src="../../assets/icon/blog.png"
               max-height="40"
               max-width="40"
             ></v-img>
@@ -50,7 +50,7 @@
           <a>
             <v-img
               @click="onClicklocation"
-              src="../assets/icon/location.png"
+              src="../../assets/icon/location.png"
               max-height="40"
               max-width="40"
             ></v-img>
@@ -101,7 +101,7 @@
         <v-card style="border-style: solid; border-color: white;">
           <v-img
             @click="onClickpost($event)"
-            src="../assets/test/dog.jpg"
+            src="../../assets/test/dog.jpg"
             aspect-ratio="1"
             class="post white--text align-end"
             gradient="to bottom, rgba(0,0,0,.01), rgba(0,0,0,.7)"
@@ -132,8 +132,8 @@ export default {
       postElement: null,
       numPost: 7,
       numFollowing: 219,
-      numFollower: 743,
-      numLike: 179
+      numFollower: 873,
+      numLike: 201
     }
   },
   methods: {
@@ -179,5 +179,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import "../../assets/style/style.css";
 </style>

@@ -32,8 +32,8 @@
 
 <script>
 import axios from 'axios'
-import toolbar from '@/components/toolbar'
-import pagebar from '@/components/pagebar'
+import toolbar from '@/components/location/toolbar'
+import pagebar from '@/components/location/pagebar'
 
 export default {
   name: 'bumap',
@@ -128,5 +128,5 @@ export default {
 </script>
 
 <style lang="scss">
-    @import "../assets/style/style.css";
+    @import "../../assets/style/style.css";
 </style>
