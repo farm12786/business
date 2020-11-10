@@ -5,16 +5,15 @@ import map from '../views/location/map.vue'
 import profile from '../views/location/profile.vue'
 import mystory from '../views/home/mystory.vue'
 import post from '../views/home/post.vue'
-import test from '../views/home/test.vue'
+import LocationIcon from '../views/location/LocationIcon.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-
   {
-    path: '/test',
-    name: 'test',
-    component: test
+    path: '/LocationIcon',
+    name: 'LocationIcon',
+    component: LocationIcon
   },
   {
     path: '/',

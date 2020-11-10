@@ -1,37 +1,52 @@
 <template>
-<div>
-  <pagebar></pagebar>
-  <toolbar @val="getbutype2"></toolbar>
+  <div>
+    <pagebar></pagebar>
+    <toolbar @val="getbutype2"></toolbar>
     <v-container grid-list-xs>
+      <GmapMap
+        id="map"
+        :center="currentPositions"
+        :zoom="15"
+        map-type-id="terrain"
+        min-width="100"
+        min-height="100"
+        style="min-width: 300px; min-height: 400px"
+      >
+        <GmapCustomMarker
+          v-for="(m, index) in markers"
+          :key="index"
+          :marker="m.position"
+        >
+          <v-img @click="onClick(m.id)" src="../../assets/icon/marker.png" height="50" width="50" >
+            <v-avatar size="33" color="primary" rounded="circle" style="margin-left:16%; margin-top:7%">
+              <v-img :src="
+                        'https://s3gw.inet.co.th:8082/static/media/' +
+                        m.image
+                      "> </v-img>
+            </v-avatar>
+          </v-img>
+        </GmapCustomMarker>
 
-            <GmapMap
-            :center="currentPositions"
-            :zoom="12"
-            map-type-id="terrain"
-            min-width="100"
-            min-height="100"
-            style="min-width: 300px;  min-height: 400px;"
-            >
-
-            <GmapMarker
-
-                :key="index"
+        <!-- <GmapMarker
                 v-for="(m, index) in markers"
+                :key="index"
                 :position="m.position"
                 :clickable="true"
                 @click="onClick(m.id)"
-            />
-            </GmapMap>
+            /> -->
+      </GmapMap>
 
-    <div style="visibility: hidden">
-    {{this.$store.state.butype}}
-    </div>
+      <div style="visibility: hidden">
+        {{ this.$store.state.butype }}
+      </div>
     </v-container>
-    <pagefoot/>
-</div>
+    <pagefoot />
+  </div>
 </template>
 
 <script>
+import GmapCustomMarker from 'vue2-gmap-custom-marker'
+
 import axios from 'axios'
 import toolbar from '@/components/location/toolbar'
 import pagebar from '@/components/location/pagebar'
@@ -41,7 +56,8 @@ export default {
   components: {
     toolbar,
     pagebar,
-    pagefoot
+    pagefoot,
+    GmapCustomMarker
   },
   data () {
     return {
@@ -54,13 +70,14 @@ export default {
   methods: {
     async getMarker (butype) {
       if (butype === 'All') {
-        this.$store.state.allBu.forEach(marker => {
+        this.$store.state.allBu.forEach((marker) => {
           this.markers.push({
             position: {
               lat: marker.latitude,
               lng: marker.longitude
             },
-            id: marker.id
+            id: marker.id,
+            image: marker.image
           })
         })
       } else {
@@ -69,25 +86,26 @@ export default {
           { bu_type: butype }
         )
 
-        result.data.list_business.forEach(marker => {
+        result.data.list_business.forEach((marker) => {
           this.markers.push({
             position: {
               lat: marker.latitude,
               lng: marker.longitude
             },
-            id: marker.id
+            id: marker.id,
+            image: marker.image
           })
         })
       }
     },
     getcurrentPosition () {
       navigator.geolocation.getCurrentPosition(
-        position => {
+        (position) => {
           this.currentPositions.lat = position.coords.latitude
           this.currentPositions.lng = position.coords.longitude
           console.log(this.currentPositions)
         },
-        error => {
+        (error) => {
           console.log(error.message)
         }
       )
@@ -123,10 +141,9 @@ export default {
       this.getMarker(newVal)
     }
   }
-
 }
 </script>
 
 <style lang="scss">
-    @import "../../assets/style/style.css";
+@import "../../assets/style/style.css";
 </style>

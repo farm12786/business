@@ -83,23 +83,18 @@
       <v-row justify="center" align="center">
         <v-col cols="4">
           <v-row justify="center" align="center">
-            <v-badge avatar bordered overlap style="transform-origin: top left">
-              <template v-slot:badge>
-                <v-avatar>
-                  <v-icon>mdi-plus</v-icon>
-                </v-avatar>
-              </template>
-              <v-avatar size="100">
-                <v-img src="https://randomuser.me/api/portraits/men/32.jpg">
+
+              <v-avatar size="100" color="primary" rounded="circle">
+                <v-img :src="userImg">
                 </v-img>
               </v-avatar>
-            </v-badge>
+
           </v-row>
         </v-col>
 
         <v-col cols="8">
           <v-row>
-            <v-col> NATAWAT SONGNUAN </v-col>
+            <v-col> {{nickName}}  </v-col>
           </v-row>
           <v-row>
             <v-col cols="3">
@@ -228,6 +223,8 @@ export default {
   },
   data () {
     return {
+      userImg: null,
+      nickName: null,
       onechatToken: null,
       token: null,
       url: null,
@@ -241,7 +238,7 @@ export default {
       postDetail: [
         {
           postId: null,
-          userImg: 'https://randomuser.me/api/portraits/men/32.jpg',
+          userImg: this.userImg,
           userName: 'NATAWAT SONGNUAN',
           date: '23 sep 2020',
           message:
@@ -251,7 +248,7 @@ export default {
         },
         {
           postId: null,
-          userImg: 'https://randomuser.me/api/portraits/men/32.jpg',
+          userImg: this.userImg,
           userName: 'NATAWAT SONGNUAN',
           date: '23 sep 2020',
           message:
@@ -260,7 +257,7 @@ export default {
         },
         {
           postId: null,
-          userImg: 'https://randomuser.me/api/portraits/men/32.jpg',
+          userImg: this.userImg,
           userName: 'NATAWAT SONGNUAN',
           date: '23 sep 2020',
           message:
@@ -270,7 +267,7 @@ export default {
         },
         {
           postId: null,
-          userImg: 'https://randomuser.me/api/portraits/men/32.jpg',
+          userImg: this.userImg,
           userName: 'NATAWAT SONGNUAN',
           date: '23 sep 2020',
           message:
@@ -280,7 +277,7 @@ export default {
         },
         {
           postId: null,
-          userImg: 'https://randomuser.me/api/portraits/men/32.jpg',
+          userImg: this.userImg,
           userName: 'NATAWAT SONGNUAN',
           date: '23 sep 2020',
           message:
@@ -290,7 +287,7 @@ export default {
         },
         {
           postId: null,
-          userImg: 'https://randomuser.me/api/portraits/men/32.jpg',
+          userImg: this.userImg,
           userName: 'NATAWAT SONGNUAN',
           date: '23 sep 2020',
           message:
@@ -300,7 +297,7 @@ export default {
         },
         {
           postId: null,
-          userImg: 'https://randomuser.me/api/portraits/men/32.jpg',
+          userImg: this.userImg,
           userName: 'NATAWAT SONGNUAN',
           date: '23 sep 2020',
           message:
@@ -310,7 +307,7 @@ export default {
         },
         {
           postId: null,
-          userImg: 'https://randomuser.me/api/portraits/men/32.jpg',
+          userImg: this.userImg,
           userName: 'NATAWAT SONGNUAN',
           date: '23 sep 2020',
           message:
@@ -320,7 +317,7 @@ export default {
         },
         {
           postId: null,
-          userImg: 'https://randomuser.me/api/portraits/men/32.jpg',
+          userImg: this.userImg,
           userName: 'NATAWAT SONGNUAN',
           date: '23 sep 2020',
           message:
@@ -330,7 +327,7 @@ export default {
         },
         {
           postId: null,
-          userImg: 'https://randomuser.me/api/portraits/men/32.jpg',
+          userImg: this.userImg,
           userName: 'NATAWAT SONGNUAN',
           date: '23 sep 2020',
           message:
@@ -340,7 +337,7 @@ export default {
         },
         {
           postId: null,
-          userImg: 'https://randomuser.me/api/portraits/men/32.jpg',
+          userImg: this.userImg,
           userName: 'NATAWAT SONGNUAN',
           date: '23 sep 2020',
           message:
@@ -350,7 +347,7 @@ export default {
         },
         {
           postId: null,
-          userImg: 'https://randomuser.me/api/portraits/men/32.jpg',
+          userImg: this.userImg,
           userName: 'NATAWAT SONGNUAN',
           date: '23 sep 2020',
           message:
@@ -412,6 +409,9 @@ export default {
     )
 
     console.log(result1)
+
+    this.userImg = result1.data.data.profilepicture
+    this.nickName = result1.data.data.nickname
   },
   updated () {
     if (this.viewpost === true) {
