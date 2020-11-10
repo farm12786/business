@@ -1,9 +1,9 @@
 <template>
 <div>
   <pagebar></pagebar>
+  <toolbar @val="getbutype2"></toolbar>
     <v-container grid-list-xs>
-      <toolbar @val="getbutype2"></toolbar>
-        <!-- <v-card> -->
+
             <GmapMap
             :center="currentPositions"
             :zoom="12"
@@ -22,11 +22,12 @@
                 @click="onClick(m.id)"
             />
             </GmapMap>
-        <!-- </v-card> -->
+
     <div style="visibility: hidden">
     {{this.$store.state.butype}}
     </div>
     </v-container>
+    <pagefoot/>
 </div>
 </template>
 
@@ -34,12 +35,13 @@
 import axios from 'axios'
 import toolbar from '@/components/location/toolbar'
 import pagebar from '@/components/location/pagebar'
-
+import pagefoot from '@/components/location/footer'
 export default {
   name: 'bumap',
   components: {
     toolbar,
-    pagebar
+    pagebar,
+    pagefoot
   },
   data () {
     return {
@@ -84,8 +86,6 @@ export default {
           this.currentPositions.lat = position.coords.latitude
           this.currentPositions.lng = position.coords.longitude
           console.log(this.currentPositions)
-
-        //   this.markers.push(this.currentPositions)
         },
         error => {
           console.log(error.message)

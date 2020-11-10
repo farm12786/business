@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <router-view></router-view>
+  <div >
     <pagebar></pagebar>
+    <toolbar @val="getbutype"></toolbar>
     <v-container fluid>
-      <toolbar @val="getbutype"></toolbar>
-
       <template v-if="this.$store.state.butype === 'All'">
         <v-data-iterator
           :items="buData"
@@ -13,85 +11,88 @@
           hide-default-footer
         >
           <template v-slot:default="props">
-            <v-row class="champ">
-              <v-col
-                v-for="(item, index) in props.items"
-                :key="index"
-                cols="6"
-                sm="6"
-                md="4"
-                lg="3"
-              >
-                <v-card>
-                  <v-img
-                    @click="onClickimage(item.id)"
-                    :src="
-                      'https://s3gw.inet.co.th:8082/static/media/' + item.image
-                    "
-                    gradient="to bottom, rgba(0,0,0,.01), rgba(0,0,0,.7)"
-                    height="200"
-                    aspect-ratio="1.7"
-                  >
-                    <v-row>
-                      <v-col cols="6">
-                        <v-avatar size="36px" style="margin-left: 3px">
-                          <v-img
-                            v-if="item.bu_type === 'hospital'"
-                            alt="Avatar"
-                            src="../../assets/icon/hospital.png"
-                          >
-                          </v-img>
-
-                          <v-img
-                            v-if="item.bu_type === 'cafe'"
-                            alt="Avatar"
-                            src="../../assets/icon/cafe.png"
-                          >
-                          </v-img>
-
-                          <v-img
-                            v-if="item.bu_type === 'farm'"
-                            alt="Avatar"
-                            src="../../assets/icon/farm.png"
-                          >
-                          </v-img>
-
-                          <v-img
-                            v-if="item.bu_type === 'hotel'"
-                            alt="Avatar"
-                            src="../../assets/icon/hotel.png"
-                          >
-                          </v-img>
-
-                          <v-img
-                            v-if="item.bu_type === 'salon'"
-                            alt="Avatar"
-                            src="../../assets/icon/salon.png"
-                          >
-                          </v-img>
-
-                          <v-img
-                            v-if="item.bu_type === 'shop'"
-                            alt="Avatar"
-                            src="../../assets/icon/shop.png"
-                          >
-                          </v-img>
-                        </v-avatar>
-                      </v-col>
-                    </v-row>
-                    <v-card-title
-                      v-text="item.first_name_th"
-                      style="
-                        color: white;
-                        font-size: 14px;
-                        font-weight: bold;
-                        margin-top: 40px;
+            <v-container>
+              <v-row>
+                <v-col
+                  v-for="(item, index) in props.items"
+                  :key="index"
+                  cols="6"
+                  sm="6"
+                  md="4"
+                  lg="4"
+                >
+                  <v-card flat>
+                    <v-img
+                      @click="onClickimage(item.id)"
+                      :src="
+                        'https://s3gw.inet.co.th:8082/static/media/' +
+                        item.image
                       "
-                    ></v-card-title>
-                  </v-img>
-                </v-card>
-              </v-col>
-            </v-row>
+                      gradient="to bottom, rgba(0,0,0,.01), rgba(0,0,0,.9)"
+                      height="200"
+                      aspect-ratio="1.7"
+                    >
+                      <v-row>
+                        <v-col cols="6">
+                          <v-avatar size="36px" style="margin-left: 3px">
+                            <v-img
+                              v-if="item.bu_type === 'hospital'"
+                              alt="Avatar"
+                              src="../../assets/icon/hospital.png"
+                            >
+                            </v-img>
+
+                            <v-img
+                              v-if="item.bu_type === 'cafe'"
+                              alt="Avatar"
+                              src="../../assets/icon/cafe.png"
+                            >
+                            </v-img>
+
+                            <v-img
+                              v-if="item.bu_type === 'farm'"
+                              alt="Avatar"
+                              src="../../assets/icon/farm.png"
+                            >
+                            </v-img>
+
+                            <v-img
+                              v-if="item.bu_type === 'hotel'"
+                              alt="Avatar"
+                              src="../../assets/icon/hotel.png"
+                            >
+                            </v-img>
+
+                            <v-img
+                              v-if="item.bu_type === 'salon'"
+                              alt="Avatar"
+                              src="../../assets/icon/salon.png"
+                            >
+                            </v-img>
+
+                            <v-img
+                              v-if="item.bu_type === 'shop'"
+                              alt="Avatar"
+                              src="../../assets/icon/shop.png"
+                            >
+                            </v-img>
+                          </v-avatar>
+                        </v-col>
+                      </v-row>
+                      <v-card-title
+                        v-text="item.first_name_th"
+                        style="
+                          text-transform: capitalize;
+                          color: white;
+                          font-size: 16px;
+                          margin-top: 35px;
+                        "
+                      ></v-card-title>
+                    </v-img>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-container>
           </template>
 
           <template v-slot:footer>
@@ -104,31 +105,6 @@
                 next-icon="mdi-menu-right"
               ></v-pagination>
             </div>
-            <!-- <div align="end" justify="end">
-              <span class="mr-4 grey--text">
-                Page {{ page }} of {{ numberOfPages_all }}
-              </span>
-              <v-btn
-                fab
-                dark
-                small
-                color="grey"
-                class="mr-1"
-                @click="formerPage"
-              >
-                <v-icon>mdi-chevron-left</v-icon>
-              </v-btn>
-              <v-btn
-                fab
-                dark
-                small
-                color="grey"
-                class="ml-1"
-                @click="nextPage_all"
-              >
-                <v-icon>mdi-chevron-right</v-icon>
-              </v-btn>
-            </div> -->
           </template>
         </v-data-iterator>
       </template>
@@ -141,45 +117,51 @@
           hide-default-footer
         >
           <template v-slot:default="props">
-            <v-row class="champ">
-              <v-col
-                v-for="(item, index) in props.items"
-                :key="index"
-                cols="6"
-                sm="6"
-                md="4"
-                lg="3"
-              >
-                <v-card class="w3-display-container">
-                  <v-img
-                    @click="onClickimage(item.id)"
-                    :src="
-                      'https://s3gw.inet.co.th:8082/static/media/' + item.image
-                    "
-                    gradient="to bottom, rgba(0,0,0,.01), rgba(0,0,0,.7)"
-                    height="200"
-                  >
-                    <v-row>
-                      <v-col cols="6">
-                        <v-avatar size="36px" style="margin-left: 3px">
-                          <v-img alt="Avatar" src="../../assets/icon/hospital.png">
-                          </v-img>
-                        </v-avatar>
-                      </v-col>
-                    </v-row>
-                    <v-card-title
-                      v-text="item.first_name_th"
-                      style="
-                        color: white;
-                        font-size: 14px;
-                        font-weight: bold;
-                        margin-top: 40px;
+            <v-container>
+              <v-row>
+                <v-col
+                  v-for="(item, index) in props.items"
+                  :key="index"
+                  cols="6"
+                  sm="6"
+                  md="4"
+                  lg="3"
+                >
+                  <v-card flat>
+                    <v-img
+                      @click="onClickimage(item.id)"
+                      :src="
+                        'https://s3gw.inet.co.th:8082/static/media/' +
+                        item.image
                       "
-                    ></v-card-title>
-                  </v-img>
-                </v-card>
-              </v-col>
-            </v-row>
+                      gradient="to bottom, rgba(0,0,0,.01), rgba(0,0,0,.9)"
+                      height="200"
+                    >
+                      <v-row>
+                        <v-col cols="6">
+                          <v-avatar size="36px" style="margin-left: 3px">
+                            <v-img
+                              alt="Avatar"
+                              src="../../assets/icon/hospital.png"
+                            >
+                            </v-img>
+                          </v-avatar>
+                        </v-col>
+                      </v-row>
+                      <v-card-title
+                        v-text="item.first_name_th"
+                        style="
+                          text-transform: capitalize;
+                          color: white;
+                          font-size: 16px;
+                          margin-top: 35px;
+                        "
+                      ></v-card-title>
+                    </v-img>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-container>
           </template>
 
           <template v-slot:footer>
@@ -192,31 +174,6 @@
                 next-icon="mdi-menu-right"
               ></v-pagination>
             </div>
-            <!-- <div align="end" justify="end">
-              <span class="mr-4 grey--text">
-                Page {{ page }} of {{ numberOfPages_hospital }}
-              </span>
-              <v-btn
-                fab
-                dark
-                small
-                color="grey"
-                class="mr-1"
-                @click="formerPage"
-              >
-                <v-icon>mdi-chevron-left</v-icon>
-              </v-btn>
-              <v-btn
-                fab
-                dark
-                small
-                color="grey"
-                class="ml-1"
-                @click="nextPage_hospital"
-              >
-                <v-icon>mdi-chevron-right</v-icon>
-              </v-btn>
-            </div> -->
           </template>
         </v-data-iterator>
       </template>
@@ -229,45 +186,51 @@
           hide-default-footer
         >
           <template v-slot:default="props">
-            <v-row class="champ">
-              <v-col
-                v-for="(item, index) in props.items"
-                :key="index"
-                cols="6"
-                sm="6"
-                md="4"
-                lg="3"
-              >
-                <v-card class="w3-display-container">
-                  <v-img
-                    @click="onClickimage(item.id)"
-                    :src="
-                      'https://s3gw.inet.co.th:8082/static/media/' + item.image
-                    "
-                    gradient="to bottom, rgba(0,0,0,.01), rgba(0,0,0,.7)"
-                    height="200"
-                  >
-                    <v-row>
-                      <v-col cols="6">
-                        <v-avatar size="36px" style="margin-left: 3px">
-                          <v-img alt="Avatar" src="../../assets/icon/cafe.png">
-                          </v-img>
-                        </v-avatar>
-                      </v-col>
-                    </v-row>
-                    <v-card-title
-                      v-text="item.first_name_th"
-                      style="
-                        color: white;
-                        font-size: 14px;
-                        font-weight: bold;
-                        margin-top: 40px;
+            <v-container>
+              <v-row>
+                <v-col
+                  v-for="(item, index) in props.items"
+                  :key="index"
+                  cols="6"
+                  sm="6"
+                  md="4"
+                  lg="3"
+                >
+                  <v-card flat>
+                    <v-img
+                      @click="onClickimage(item.id)"
+                      :src="
+                        'https://s3gw.inet.co.th:8082/static/media/' +
+                        item.image
                       "
-                    ></v-card-title>
-                  </v-img>
-                </v-card>
-              </v-col>
-            </v-row>
+                      gradient="to bottom, rgba(0,0,0,.01), rgba(0,0,0,.9)"
+                      height="200"
+                    >
+                      <v-row>
+                        <v-col cols="6">
+                          <v-avatar size="36px" style="margin-left: 3px">
+                            <v-img
+                              alt="Avatar"
+                              src="../../assets/icon/cafe.png"
+                            >
+                            </v-img>
+                          </v-avatar>
+                        </v-col>
+                      </v-row>
+                      <v-card-title
+                        style="
+                          text-transform: capitalize;
+                          color: white;
+                          font-size: 16px;
+                          margin-top: 35px;
+                        "
+                        v-text="item.first_name_th"
+                      ></v-card-title>
+                    </v-img>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-container>
           </template>
 
           <template v-slot:footer>
@@ -280,31 +243,6 @@
                 next-icon="mdi-menu-right"
               ></v-pagination>
             </div>
-            <!-- <div align="end" justify="end">
-              <span class="mr-4 grey--text">
-                Page {{ page }} of {{ numberOfPages_cafe }}
-              </span>
-              <v-btn
-                fab
-                dark
-                small
-                color="grey"
-                class="mr-1"
-                @click="formerPage"
-              >
-                <v-icon>mdi-chevron-left</v-icon>
-              </v-btn>
-              <v-btn
-                fab
-                dark
-                small
-                color="grey"
-                class="ml-1"
-                @click="nextPage_cafe"
-              >
-                <v-icon>mdi-chevron-right</v-icon>
-              </v-btn>
-            </div> -->
           </template>
         </v-data-iterator>
       </template>
@@ -317,46 +255,52 @@
           hide-default-footer
         >
           <template v-slot:default="props">
-            <v-row class="champ">
-              <v-col
-                v-for="(item, index) in props.items"
-                :key="index"
-                cols="6"
-                sm="6"
-                md="4"
-                lg="3"
-              >
-                <v-card class="w3-display-container">
-                  <v-img
-                    @click="onClickimage(item.id)"
-                    :src="
-                      'https://s3gw.inet.co.th:8082/static/media/' + item.image
-                    "
-                    gradient="to bottom, rgba(0,0,0,.01), rgba(0,0,0,.7)"
-                    height="200"
-                    aspect-ratio="1.7"
-                  >
-                    <v-row>
-                      <v-col cols="6">
-                        <v-avatar size="36px" style="margin-left: 3px">
-                          <v-img alt="Avatar" src="../../assets/icon/hotel.png">
-                          </v-img>
-                        </v-avatar>
-                      </v-col>
-                    </v-row>
-                    <v-card-title
-                      v-text="item.first_name_th"
-                      style="
-                        color: white;
-                        font-size: 14px;
-                        font-weight: bold;
-                        margin-top: 40px;
+            <v-container>
+              <v-row>
+                <v-col
+                  v-for="(item, index) in props.items"
+                  :key="index"
+                  cols="6"
+                  sm="6"
+                  md="4"
+                  lg="3"
+                >
+                  <v-card flat>
+                    <v-img
+                      @click="onClickimage(item.id)"
+                      :src="
+                        'https://s3gw.inet.co.th:8082/static/media/' +
+                        item.image
                       "
-                    ></v-card-title>
-                  </v-img>
-                </v-card>
-              </v-col>
-            </v-row>
+                      gradient="to bottom, rgba(0,0,0,.01), rgba(0,0,0,.9)"
+                      height="200"
+                      aspect-ratio="1.7"
+                    >
+                      <v-row>
+                        <v-col cols="6">
+                          <v-avatar size="36px" style="margin-left: 3px">
+                            <v-img
+                              alt="Avatar"
+                              src="../../assets/icon/hotel.png"
+                            >
+                            </v-img>
+                          </v-avatar>
+                        </v-col>
+                      </v-row>
+                      <v-card-title
+                        v-text="item.first_name_th"
+                        style="
+                          text-transform: capitalize;
+                          color: white;
+                          font-size: 16px;
+                          margin-top: 35px;
+                        "
+                      ></v-card-title>
+                    </v-img>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-container>
           </template>
 
           <template v-slot:footer>
@@ -369,31 +313,6 @@
                 next-icon="mdi-menu-right"
               ></v-pagination>
             </div>
-            <!-- <div align="end" justify="end">
-              <span class="mr-4 grey--text">
-                Page {{ page }} of {{ numberOfPages_hotel }}
-              </span>
-              <v-btn
-                fab
-                dark
-                small
-                color="grey"
-                class="mr-1"
-                @click="formerPage"
-              >
-                <v-icon>mdi-chevron-left</v-icon>
-              </v-btn>
-              <v-btn
-                fab
-                dark
-                small
-                color="grey"
-                class="ml-1"
-                @click="nextPage_hotel"
-              >
-                <v-icon>mdi-chevron-right</v-icon>
-              </v-btn>
-            </div> -->
           </template>
         </v-data-iterator>
       </template>
@@ -406,45 +325,51 @@
           hide-default-footer
         >
           <template v-slot:default="props">
-            <v-row class="champ">
-              <v-col
-                v-for="(item, index) in props.items"
-                :key="index"
-                cols="6"
-                sm="6"
-                md="4"
-                lg="3"
-              >
-                <v-card class="w3-display-container">
-                  <v-img
-                    @click="onClickimage(item.id)"
-                    :src="
-                      'https://s3gw.inet.co.th:8082/static/media/' + item.image
-                    "
-                    gradient="to bottom, rgba(0,0,0,.01), rgba(0,0,0,.7)"
-                    height="200"
-                  >
-                    <v-row>
-                      <v-col cols="6">
-                        <v-avatar size="36px" style="margin-left: 3px">
-                          <v-img alt="Avatar" src="../../assets/icon/shop.png">
-                          </v-img>
-                        </v-avatar>
-                      </v-col>
-                    </v-row>
-                    <v-card-title
-                      v-text="item.first_name_th"
-                      style="
-                        color: white;
-                        font-size: 14px;
-                        font-weight: bold;
-                        margin-top: 40px;
+            <v-container>
+              <v-row>
+                <v-col
+                  v-for="(item, index) in props.items"
+                  :key="index"
+                  cols="6"
+                  sm="6"
+                  md="4"
+                  lg="3"
+                >
+                  <v-card flat>
+                    <v-img
+                      @click="onClickimage(item.id)"
+                      :src="
+                        'https://s3gw.inet.co.th:8082/static/media/' +
+                        item.image
                       "
-                    ></v-card-title>
-                  </v-img>
-                </v-card>
-              </v-col>
-            </v-row>
+                      gradient="to bottom, rgba(0,0,0,.01), rgba(0,0,0,.9)"
+                      height="200"
+                    >
+                      <v-row>
+                        <v-col cols="6">
+                          <v-avatar size="36px" style="margin-left: 3px">
+                            <v-img
+                              alt="Avatar"
+                              src="../../assets/icon/shop.png"
+                            >
+                            </v-img>
+                          </v-avatar>
+                        </v-col>
+                      </v-row>
+                      <v-card-title
+                        v-text="item.first_name_th"
+                        style="
+                          text-transform: capitalize;
+                          color: white;
+                          font-size: 16px;
+                          margin-top: 35px;
+                        "
+                      ></v-card-title>
+                    </v-img>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-container>
           </template>
 
           <template v-slot:footer>
@@ -457,31 +382,6 @@
                 next-icon="mdi-menu-right"
               ></v-pagination>
             </div>
-            <!-- <div align="end" justify="end">
-              <span class="mr-4 grey--text">
-                Page {{ page }} of {{ numberOfPages_shop }}
-              </span>
-              <v-btn
-                fab
-                dark
-                small
-                color="grey"
-                class="mr-1"
-                @click="formerPage"
-              >
-                <v-icon>mdi-chevron-left</v-icon>
-              </v-btn>
-              <v-btn
-                fab
-                dark
-                small
-                color="grey"
-                class="ml-1"
-                @click="nextPage_shop"
-              >
-                <v-icon>mdi-chevron-right</v-icon>
-              </v-btn>
-            </div> -->
           </template>
         </v-data-iterator>
       </template>
@@ -494,45 +394,51 @@
           hide-default-footer
         >
           <template v-slot:default="props">
-            <v-row class="champ">
-              <v-col
-                v-for="(item, index) in props.items"
-                :key="index"
-                cols="6"
-                sm="6"
-                md="4"
-                lg="3"
-              >
-                <v-card class="w3-display-container">
-                  <v-img
-                    @click="onClickimage(item.id)"
-                    :src="
-                      'https://s3gw.inet.co.th:8082/static/media/' + item.image
-                    "
-                    gradient="to bottom, rgba(0,0,0,.01), rgba(0,0,0,.7)"
-                    height="200"
-                  >
-                    <v-row>
-                      <v-col cols="6">
-                        <v-avatar size="36px" style="margin-left: 3px">
-                          <v-img alt="Avatar" src="../../assets/icon/salon.png">
-                          </v-img>
-                        </v-avatar>
-                      </v-col>
-                    </v-row>
-                    <v-card-title
-                      v-text="item.first_name_th"
-                      style="
-                        color: white;
-                        font-size: 14px;
-                        font-weight: bold;
-                        margin-top: 40px;
+            <v-container>
+              <v-row>
+                <v-col
+                  v-for="(item, index) in props.items"
+                  :key="index"
+                  cols="6"
+                  sm="6"
+                  md="4"
+                  lg="3"
+                >
+                  <v-card flat>
+                    <v-img
+                      @click="onClickimage(item.id)"
+                      :src="
+                        'https://s3gw.inet.co.th:8082/static/media/' +
+                        item.image
                       "
-                    ></v-card-title>
-                  </v-img>
-                </v-card>
-              </v-col>
-            </v-row>
+                      gradient="to bottom, rgba(0,0,0,.01), rgba(0,0,0,.9)"
+                      height="200"
+                    >
+                      <v-row>
+                        <v-col cols="6">
+                          <v-avatar size="36px" style="margin-left: 3px">
+                            <v-img
+                              alt="Avatar"
+                              src="../../assets/icon/salon.png"
+                            >
+                            </v-img>
+                          </v-avatar>
+                        </v-col>
+                      </v-row>
+                      <v-card-title
+                        v-text="item.first_name_th"
+                        style="
+                          text-transform: capitalize;
+                          color: white;
+                          font-size: 16px;
+                          margin-top: 35px;
+                        "
+                      ></v-card-title>
+                    </v-img>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-container>
           </template>
 
           <template v-slot:footer>
@@ -545,31 +451,6 @@
                 next-icon="mdi-menu-right"
               ></v-pagination>
             </div>
-            <!-- <div align="end" justify="end">
-              <span class="mr-4 grey--text">
-                Page {{ page }} of {{ numberOfPages_salon }}
-              </span>
-              <v-btn
-                fab
-                dark
-                small
-                color="grey"
-                class="mr-1"
-                @click="formerPage"
-              >
-                <v-icon>mdi-chevron-left</v-icon>
-              </v-btn>
-              <v-btn
-                fab
-                dark
-                small
-                color="grey"
-                class="ml-1"
-                @click="nextPage_salon"
-              >
-                <v-icon>mdi-chevron-right</v-icon>
-              </v-btn>
-            </div> -->
           </template>
         </v-data-iterator>
       </template>
@@ -582,49 +463,57 @@
           hide-default-footer
         >
           <template v-slot:default="props">
-            <v-row class="champ">
-              <v-col
-                v-for="(item, index) in props.items"
-                :key="index"
-                cols="6"
-                sm="6"
-                md="4"
-                lg="3"
-              >
-                <v-card class="w3-display-container">
-                  <v-img
-                    @click="onClickimage(item.id)"
-                    :src="
-                      'https://s3gw.inet.co.th:8082/static/media/' + item.image
-                    "
-                    gradient="to bottom, rgba(0,0,0,.01), rgba(0,0,0,.7)"
-                    height="200"
-                  >
-                    <v-row>
-                      <v-col cols="6">
-                        <v-avatar size="36px" style="margin-left: 3px">
-                          <v-img alt="Avatar" src="../../assets/icon/farm.png">
-                          </v-img>
-                        </v-avatar>
-                      </v-col>
-                    </v-row>
-                    <v-card-title
-                      v-text="item.first_name_th"
-                      style="
-                        color: white;
-                        font-size: 14px;
-                        font-weight: bold;
-                        margin-top: 40px;
+            <v-container>
+              <v-row>
+                <v-col
+                  v-for="(item, index) in props.items"
+                  :key="index"
+                  cols="6"
+                  sm="6"
+                  md="4"
+                  lg="3"
+                >
+                  <v-card flat>
+                    <v-img
+                      @click="onClickimage(item.id)"
+                      :src="
+                        'https://s3gw.inet.co.th:8082/static/media/' +
+                        item.image
                       "
-                    ></v-card-title>
-                  </v-img>
-                </v-card>
-              </v-col>
-            </v-row>
+                      gradient="to bottom, rgba(0,0,0,.01), rgba(0,0,0,.9)"
+                      height="200"
+                    >
+                      <v-row>
+                        <v-col cols="6">
+                          <v-avatar size="36px" style="margin-left: 3px">
+                            <v-img
+                              alt="Avatar"
+                              src="../../assets/icon/farm.png"
+                            >
+                            </v-img>
+                          </v-avatar>
+                        </v-col>
+                      </v-row>
+                      <v-card-title
+                        v-text="item.first_name_th"
+                        style="
+                          text-transform: capitalize;
+                          color: white;
+                          font-size: 16px;
+                          margin-top: 35px;
+                        "
+                      ></v-card-title>
+                    </v-img>
+                  </v-card>
+                </v-col>
+              </v-row>
+
+            </v-container>
           </template>
 
-          <template v-slot:footer>
+          <template>
             <div>
+
               <v-pagination
                 v-model="page"
                 :length="numberOfPages_farm"
@@ -632,25 +521,31 @@
                 prev-icon="mdi-menu-left"
                 next-icon="mdi-menu-right"
               ></v-pagination>
-            </div>
 
+            </div>
           </template>
         </v-data-iterator>
+
       </template>
+
     </v-container>
+<pagefoot></pagefoot>
   </div>
+
 </template>
 
 <script>
 import axios from 'axios'
 import toolbar from '@/components/location/toolbar'
 import pagebar from '@/components/location/pagebar'
+import pagefoot from '@/components/location/footer'
 
 export default {
   name: 'location',
   components: {
     toolbar,
-    pagebar
+    pagebar,
+    pagefoot
   },
   data () {
     return {
@@ -662,7 +557,7 @@ export default {
       salonData: [],
       farmData: [],
       page: 1,
-      itemsPerPage: 8
+      itemsPerPage: 6
     }
   },
   async mounted () {
@@ -791,6 +686,5 @@ export default {
 </script>
 
 <style lang="scss">
-// @import "../assets/style/style.css";
 @import "../../assets/style/style.css";
 </style>

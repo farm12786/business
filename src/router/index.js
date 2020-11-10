@@ -5,10 +5,17 @@ import map from '../views/location/map.vue'
 import profile from '../views/location/profile.vue'
 import mystory from '../views/home/mystory.vue'
 import post from '../views/home/post.vue'
+import test from '../views/home/test.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
+
+  {
+    path: '/test',
+    name: 'test',
+    component: test
+  },
   {
     path: '/',
     name: 'mystory',
@@ -38,6 +45,17 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      const position = {}
+      if (to.hash) {
+        position.selector = to.hash
+        return false
+      }
+    }
+  },
   routes
 })
 

@@ -13,6 +13,7 @@
     "vue": "^2.6.11",
     "vue-localstorage": "^0.6.2",
     "vue-router": "^3.2.0",
+    "vue-scrollto": "^2.20.0",
     "vue2-filters": "^0.11.0",
     "vue2-gmap-custom-marker": "^5.6.2",
     "vue2-google-maps": "^0.10.7",

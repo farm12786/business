@@ -1,14 +1,16 @@
 <template>
-    <v-toolbar
+    <v-app-bar
+      app
         dark
-        color="blue darken-3"
+        color="#9ADA91"
+        height="70"
         >
-        <v-btn icon @click="onClickback"><v-icon>mdi-arrow-left</v-icon></v-btn>
-        <v-toolbar-title style="font-size:20px; font-weight: bold;">
+        <v-btn icon @click="onClickback" style="color:black;"><v-icon>mdi-arrow-left</v-icon></v-btn>
+        <v-toolbar-title style="font-size:20px; font-weight: bold; color:black;">
             {{buName}}
         </v-toolbar-title>
 
-    </v-toolbar>
+    </v-app-bar>
 </template>
 
 <script>

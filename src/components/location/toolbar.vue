@@ -1,26 +1,27 @@
 <template>
 
-      <v-toolbar dark color="#7D7D67" class="mb-1">
+      <v-toolbar dark color="#EFE976" class="mb-1" >
         <template>
-          <v-col cols="9">
+          <v-col cols="8" sm="10" md="10" lg="10">
             <v-select
+              validate-on-blur
+              dense
               v-model="butype"
-              flat
+              color="black"
               solo-inverted
               hide-details
               :items="bu"
               prepend-inner-icon="mdi-magnify"
               label="All"
-              text-color="primary"
             >
             </v-select>
           </v-col>
           <v-spacer></v-spacer>
 
-          <v-btn icon color="#8EF948" @click="onClickcontent"
+          <v-btn icon color="black" @click="onClickcontent"
             ><v-icon>mdi-view-grid-outline</v-icon></v-btn
           >
-          <v-btn icon color="#8EF948" @click="onClickmap(butype)"
+          <v-btn icon color="black" @click="onClickmap(butype)"
             ><v-icon>mdi-map-marker-radius</v-icon></v-btn
           >
         </template>

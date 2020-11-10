@@ -1,16 +1,45 @@
 <template>
-    <v-toolbar
+  <div>
+    <v-app-bar
         dark
-        color="blue darken-3"
+        app
+        color="#9ADA91"
+        height="70"
         >
-        <v-toolbar-title style="margin-left:20px; font-size:30px; font-weight: bold;">
-            LOCATION
-        </v-toolbar-title>
 
-        <v-spacer></v-spacer>
-        <v-btn icon ><v-icon>mdi-magnify</v-icon></v-btn>
-        <v-btn icon @click="onClickhome"><v-icon>mdi-home</v-icon></v-btn>
-    </v-toolbar>
+       <v-row align="center">
+        <v-col cols="4">
+          <v-row justify="start" align="center">
+          <v-img
+            src="../../assets/icon/icon_PETDY.png"
+            aspect-ratio="1"
+            max-height="80"
+            max-width="80">
+
+          </v-img>
+          </v-row>
+        </v-col>
+
+          <v-col cols="4">
+            <v-row justify="center" align="center">
+          <v-toolbar-title
+            class="text_bar"
+          >
+            Location
+          </v-toolbar-title>
+          </v-row>
+          </v-col>
+
+          <v-col cols="4">
+            <v-row justify="end" align="center">
+          <v-btn icon style="color:black; " ><v-icon>mdi-magnify</v-icon></v-btn>
+          <v-btn icon style="color:black; " @click="onClickhome"><v-icon>mdi-home</v-icon></v-btn>
+          </v-row>
+          </v-col>
+      </v-row>
+    </v-app-bar>
+
+  </div>
 </template>
 
 <script>

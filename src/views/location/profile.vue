@@ -36,8 +36,11 @@
             VIEW ON MAP
           </v-btn>
 
+<a href="https://www.google.com/maps?saddr=My+Location&daddr=43.12345,-76.12345">VIEW ON MAP</a>
+
         </v-col>
       </v-row>
+      <pagefoot/>
     </v-container>
     {{buId}}
   </div>
@@ -46,10 +49,13 @@
 <script>
 import axios from 'axios'
 import profilepagebar from '@/components/location/profilepagebar'
+import pagefoot from '@/components/location/footer'
+
 export default {
   name: 'profile',
   components: {
-    profilepagebar
+    profilepagebar,
+    pagefoot
   },
   data () {
     return {
