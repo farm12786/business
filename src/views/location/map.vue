@@ -46,11 +46,11 @@
 
 <script>
 import GmapCustomMarker from 'vue2-gmap-custom-marker'
-
 import axios from 'axios'
 import toolbar from '@/components/location/toolbar'
 import pagebar from '@/components/location/pagebar'
 import pagefoot from '@/components/location/footer'
+
 export default {
   name: 'bumap',
   components: {
@@ -128,7 +128,6 @@ export default {
     this.getcurrentPosition()
     this.clearMarker()
 
-    // this.getMarker(this.$route.query.butype)
     this.getMarker(this.$store.state.butype)
   },
   updated () {
